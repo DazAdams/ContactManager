@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager", "ContactMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{BA4D19C7-3F61-47BA-A761-F4D5D4B26096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataServices", "DataServices\DataServices.csproj", "{D113F9B3-151E-40BB-BE4E-833584C1A424}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "DataServices\Services.csproj", "{D113F9B3-151E-40BB-BE4E-833584C1A424}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

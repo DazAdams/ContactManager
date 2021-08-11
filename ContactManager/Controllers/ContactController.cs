@@ -1,51 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
+using Services;
+using Services.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ContactManager.Controllers
 {
 	//NOTE: DA - I would normally encourage the use of request/response objects but, this is omitted for simplicity
-
-	[Route("api/[controller]")]
+	[Produces("application/json")]
+	[Route("api/contacts")]
 	[ApiController]
 	public class ContactController : ControllerBase
 	{
-		// GET: api/<ContactController>
+		private readonly IContactService _contactService;
+
+		public ContactController(IContactService contactService)
+		{
+			_contactService = contactService;
+		}
+
 		[HttpGet]
-		public IEnumerable<string> Get()
+		public IEnumerable<Contact> Get()
 		{
-			string MyString = "abc";
-
-			return new string[] { "value1", "value2" };
+			return _contactService.GetContacts();
 		}
 
-		// GET api/<ContactController>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public Contact Get(int id)
 		{
-			return "value";
+			return _contactService.GetContact(id);
 		}
 
-		// POST api/<ContactController>
 		[HttpPost]
-		public void Post([FromBody] string value)
+		public void Post([FromBody] Contact contact)
 		{
+			_contactService.SaveContact(contact);
 		}
 
-		// PUT api/<ContactController>/5
-		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
-		{
-		}
+		//[HttpPut("{id}")]
+		//public void Put(int id, [FromBody] string value)
+		//{
+		//}
 
-		// DELETE api/<ContactController>/5
-		[HttpDelete("{id}")]
-		public void Delete(int id)
-		{
-		}
+		//[HttpDelete("{id}")]
+		//public void Delete(int id)
+		//{
+		//}
 	}
 }
