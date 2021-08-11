@@ -1,6 +1,11 @@
 <h1 id="tableLabel">Contacts</h1>
-<button class="btn btn-primary" (click)="addContact()">Add contact</button>
+<button class="btn btn-primary" [routerLink]="['/contact-add']">Add Contact</button>
 <p *ngIf="!contacts"><em>Loading...</em></p>
+
+<div *ngIf="contacts.length == 0 ">
+  <p><em>You have no contacts.</em></p>
+</div>
+
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="contacts">
   <thead>
     <tr>
