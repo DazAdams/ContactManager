@@ -1,8 +1,8 @@
 <h1 id="tableLabel">Contacts</h1>
-<button class="btn btn-primary" [routerLink]="['/contact-add']">Add Contact</button>
-<p *ngIf="!contacts"><em>Loading...</em></p>
+<button class="btn btn-primary" [routerLink]="['/contact']">Add Contact</button>
+<p *ngIf="showLoading"><em>Loading...</em></p>
 
-<div *ngIf="contacts.length == 0 ">
+<div *ngIf="!showLoading && !contacts ">
   <p><em>You have no contacts.</em></p>
 </div>
 
@@ -13,14 +13,16 @@
       <th>LastName</th>
       <th>Email</th>
       <th>Phone</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let contact of contacts">
       <td>{{ contact.firstname }}</td>
       <td>{{ contact.lastname }}</td>
-      <td>{{ contact.emailaddress }}</td>
+      <td>{{ contact.email }}</td>
       <td>{{ contact.phone }}</td>
+      <td> <button class="btn btn-primary" [routerLink]="['/contact/',contact.contactId]">View</button></td>
     </tr>
   </tbody>
 </table>

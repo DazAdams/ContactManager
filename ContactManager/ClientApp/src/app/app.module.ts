@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
-import { ContactAddComponent } from './contact-add/contact-add.component';
+import { ContactDetailsComponent } from './contact-details/contact-details.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { ContactAddComponent } from './contact-add/contact-add.component';
     NavMenuComponent,
     HomeComponent,
     ContactListComponent,
-    ContactAddComponent
+    ContactDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -24,7 +24,8 @@ import { ContactAddComponent } from './contact-add/contact-add.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'contacts', component: ContactListComponent },
-      { path: 'contact-add', component: ContactAddComponent }
+      { path: 'contact', component: ContactDetailsComponent },
+      { path: 'contact/:contactid', component: ContactDetailsComponent }
     ])
   ],
   providers: [],

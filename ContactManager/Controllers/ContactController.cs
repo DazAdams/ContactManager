@@ -27,7 +27,7 @@ namespace ContactManager.Controllers
 		[HttpGet("{id}")]
 		public Contact Get(int id)
 		{
-			return _contactService.GetContact(id);
+		return _contactService.GetContact(id);
 		}
 
 		[HttpPost]

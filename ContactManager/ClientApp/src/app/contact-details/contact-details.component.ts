@@ -5,21 +5,28 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
-  selector: 'app-contact-add',
-  templateUrl: './contact-add.component.html'
+  selector: 'app-contact-details',
+  templateUrl: './contact-details.component.html'
 })
-export class ContactAddComponent implements OnInit {
+export class ContactDetailsComponent implements OnInit {
 
-  model: Contact = { id: 0, firstName: '', lastName: '', email: '', phone: '' };
+  model: Contact = {contactid: 0, firstname: '', lastname: '', email: '', phone: '' };
+  public isNew: Boolean = true;
 
 
-  constructor(private _Activatedroute: ActivatedRoute,
+  constructor(private _activatedroute: ActivatedRoute,
     private _router: Router, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
-
   }
 
   ngOnInit() {
-    console.log(this.model);
+    const routeParams = this._activatedroute.snapshot.paramMap;
+    const contactId = routeParams.get('contactid');
+    if (contactId != null) {
+      this.http.get<Contact>(this.baseUrl + 'api/contacts/' + contactId).subscribe(result => {
+        this.isNew = false;
+        this.model = result;
+      }, error => console.error(error));
+    }
   }
 
   onSubmit() {
