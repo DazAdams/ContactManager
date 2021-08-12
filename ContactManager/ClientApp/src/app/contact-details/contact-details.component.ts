@@ -30,8 +30,6 @@ export class ContactDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.baseUrl + 'api/contacts');
-    console.log(JSON.stringify(this.model));
     this.http.post<Contact>(this.baseUrl + 'api/contacts', this.model).subscribe(result => {
       this._router.navigate(['/contacts']);
     }, error => console.error(error));

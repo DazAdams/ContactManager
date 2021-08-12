@@ -4,11 +4,16 @@
 <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
   <div class="form-group">
     <label for="firstName">First Name</label>
-    <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstname" #firstName="ngModel" required />
+    <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstname" #firstName="ngModel"
+           [ngClass]="{ 'is-invalid': f.submitted &&  (firstName == undefined || firstName.invalid) }" required />
+    <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+      <div *ngIf="firstName.errors.required">First Name is required</div>
+    </div>
   </div>
   <div class="form-group">
     <label for="lastName">Last Name</label>
-    <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastname" #lastName="ngModel" required />
+    <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastname" #lastName="ngModel"
+           [ngClass]="{ 'is-invalid': f.submitted &&  (lastName == undefined || lastName.invalid) }" required />
     <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
       <div *ngIf="lastName.errors.required">Last Name is required</div>
     </div>
@@ -16,18 +21,18 @@
   <div class="form-group">
     <label for="email">Email</label>
     <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel"
-           [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email />
-    <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+           [ngClass]="{ 'is-invalid': f.submitted &&  (email == undefined || email.invalid) }" required email />
+    <div *ngIf="f.submitted && (email == undefined || email.invalid)" class="invalid-feedback">
       <div *ngIf="email.errors.required">Email is required</div>
       <div *ngIf="email.errors.email">Email must be a valid email address</div>
     </div>
   </div>
   <div class="form-group">
     <label for="phone">Phone</label>
-    <input type="text" class="form-control" name="phone" [(ngModel)]="model.phone" #email="ngModel"
-           [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" required />
-    <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback">
-      <div *ngIf="phone.errors.required">phone is required</div>
+    <input type="text" class="form-control" name="phone" [(ngModel)]="model.phone" #phone="ngModel"
+           [ngClass]="{ 'is-invalid': f.submitted && (phone == undefined || phone.invalid) }" required />
+    <div *ngIf="f.submitted && (phone == undefined || phone.invalid)" class="invalid-feedback">
+      <div *ngIf="phone.errors.required">Phone is required</div>
     </div>
   </div>
   <div class="form-group">

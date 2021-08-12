@@ -32,7 +32,20 @@ namespace Repositories
 
 		public void SaveContact(Contact Contact)
 		{
-			_entities.Add(Contact);
+			// Check if we are adding or editing
+			if (Contact.ContactId == 0)
+			{
+				_entities.Add(Contact);
+			}
+			else
+			{
+				var existingContact = _entities.Contacts.FirstOrDefault(x => x.ContactId == Contact.ContactId);
+				existingContact.Firstname = Contact.Firstname;
+				existingContact.Lastname = Contact.Lastname;
+				existingContact.EmailAddress = Contact.EmailAddress;
+				existingContact.Phone = Contact.Phone;
+			}
+			
 		}
 
 	}
